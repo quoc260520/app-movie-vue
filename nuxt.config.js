@@ -20,11 +20,11 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
 
-  css: [],
+  css: ["~/assets/css/tailwind.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
 
-  plugins: [],
+  plugins: [{ src: "~/plugins/vee-validate.js", ssr: false }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
 
@@ -40,18 +40,20 @@ export default {
     // https://go.nuxtjs.dev/vuetify
 
     "@nuxtjs/vuetify",
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/composition-api/module",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
 
-  modules: [],
+  modules: ["@nuxtjs/axios"],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
 
   vuetify: {
     customVariables: ["~/assets/variables.scss"],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,
@@ -68,5 +70,20 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
 
-  build: {},
+  build: {
+    postcss: {
+      postcssOptions: {
+        plugins: {
+          tailwindcss: {},
+          autoprefixer: {},
+        },
+      },
+    },
+  },
+  router: {
+    middleware: [],
+  },
+  cookies: {
+    parseJSON: false,
+  },
 }
