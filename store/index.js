@@ -1,5 +1,6 @@
 import Vue from "vue"
 import Vuex from "vuex"
+import { NAME_TOKEN } from "../constants/index"
 import getters from "./getters"
 
 Vue.use(Vuex)
@@ -13,10 +14,25 @@ requireModule.keys().forEach((fileName) => {
     requireModule(fileName).default || requireModule(fileName)
 })
 
+export const actions = {
+  nuxtServerInit({ commit, dispatch }, { req, app }) {
+    if (req) {
+      const cookies = req.headers.cookie.split("; ").reduce((acc, cookie) => {
+        const [name, value] = cookie.split("=")
+        acc[name] = value
+        return acc
+      }, {})
+      const useToken = cookies[NAME_TOKEN]
+      commit("setToken", useToken)
+    }
+  },
+}
+
 const createStore = () => {
-    return new Vuex.Store({
-        modules,
-        getters,
-    })
+  return new Vuex.Store({
+    actions,
+    modules,
+    getters,
+  })
 }
 export default createStore

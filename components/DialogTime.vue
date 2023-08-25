@@ -92,7 +92,7 @@ export default {
       return moment(time).format("HH:mm A")
     },
     buyTicker(idTime) {
-      alert(idTime)
+      this.$router.push(`/time-movie/${idTime}`)
     },
     closeDialog() {
       this.$emit("close-modal-time")

@@ -1,5 +1,8 @@
 <template>
   <v-app dark>
+    <v-overlay :model-value="overlay" class="align-center justify-center">
+      <v-progress-circular color="primary" indeterminate size="64" />
+    </v-overlay>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -38,7 +41,7 @@
       <template #append>
         <div class="pa-2">
           <v-btn
-            v-if="!auth.user"
+            v-if="!auth.name"
             block
             color="success"
             class="px-5"
@@ -46,7 +49,7 @@
           >
             Login
           </v-btn>
-          <v-btn v-else block color="error" class="px-5" @click="logout">
+          <v-btn v-else block color="error" class="px-5" @click="logoutClick">
             Logout
           </v-btn>
         </div>
@@ -194,6 +197,10 @@ export default {
       }
     },
     selectItem(item) {},
+    logoutClick() {
+      this.logout()
+      this.$router.push("/")
+    },
     ...mapActions(["logout", "getInfo"]),
   },
 }

@@ -1,6 +1,6 @@
 export default function ({ route, redirect, store }) {
-  const user = store.state.auth.name
-  if (!user) {
+  const token = store.state.auth.token
+  if (!token) {
     store.dispatch("getInfo")
     const userVerify = store.state.auth.name
     if (!userVerify) {

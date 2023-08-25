@@ -1,4 +1,4 @@
-import { getToken } from "../../utils/auth.js"
+import { getToken, setToken } from "../../utils/auth.js"
 import { getInfo, logout } from "../../service/auth.js"
 export const state = () => ({
   token: getToken(),
@@ -57,12 +57,14 @@ export const actions = {
         .then((response) => {
           const user = response?.data
           if (!user) {
-            reject(new Error("Verification failed, please Login again."))
+            reject(new Error("Logout failed, please logout again."))
           }
           commit("setUser", "")
           commit("setStatus", "")
           commit("setEmail", "")
           commit("setName", "")
+          commit("setToken", "")
+          setToken("")
           resolve(user)
         })
         .catch((error) => {

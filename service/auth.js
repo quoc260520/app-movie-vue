@@ -14,7 +14,7 @@ export function getInfo() {
 }
 
 export function logout() {
-  return request("/auth/me", {
+  return request("/auth/logout", {
     method: "GET",
   })
 }

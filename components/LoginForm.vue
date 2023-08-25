@@ -60,6 +60,7 @@
   </v-row>
 </template>
 <script>
+import { mapActions } from "vuex"
 import { ValidationObserver, ValidationProvider } from "vee-validate"
 import { login } from "../service/auth.js"
 import { setToken } from "../utils/auth.js"
@@ -102,13 +103,15 @@ export default {
             password: this.password,
           })
           if (res?.response?.status === 200) {
-            setToken(res.data.data.access_token);
+            setToken(res.data.data.access_token)
             this.closeDialog()
+            await this.getInfo()
           }
         }
       })
     },
     openDialog() {},
+    ...mapActions(["getInfo"]),
   },
 }
 </script>

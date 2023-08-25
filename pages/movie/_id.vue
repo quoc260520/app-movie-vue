@@ -9,8 +9,8 @@
 import { getMovieById } from "../../service/movie"
 export default {
   validate({ params }) {
-    const pattern = /^[0-9]$/
-    return pattern.test(params.id)
+    const id = parseInt(params.id)
+    return Number.isInteger(id) && id > 0
   },
   data() {
     return {

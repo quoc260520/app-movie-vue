@@ -1,15 +1,14 @@
 import Cookies from "js-cookie"
-
-const nameToken = "movieAccessToken"
+import { NAME_TOKEN } from "../constants/index"
 
 export function getToken() {
-  return Cookies.get(nameToken)
+  return Cookies.get(NAME_TOKEN)
 }
 
 export function setToken(token) {
-  return Cookies.set(nameToken, token)
+  return Cookies.set(NAME_TOKEN, token)
 }
 
 export function removeToken() {
-  return Cookies.remove(nameToken)
+  return Cookies.remove(NAME_TOKEN)
 }

@@ -1,0 +1,8 @@
+const STATUS_TICKET = {
+  STATUS_CANCEL: 0,
+  STATUS_UNUSED: 1,
+  STATUS_USED: 2,
+}
+const NAME_TOKEN = "movieAccessToken"
+
+export { STATUS_TICKET, NAME_TOKEN }
